@@ -31,23 +31,44 @@ const staff = [
     },
 ]
 const teamContainer = document.querySelector(".team-container")
+const addMember = document.querySelector("#addMemberButton")
+const fullName = document.querySelector("#name")
+const position = document.querySelector("#role")
+const image = document.querySelector("#image")
 
-for (let i = 0; i < staff.length; i++) {
+function addTeam(ogg,where){
     const figure = `
     <div class="team-card">
         <div class="card-image">
-            <img src="${staff[i].img}" alt="${staff[i].fullName}" />
+            <img src="${ogg.img}" alt="${ogg.fullName}" />
         </div>
         <div class="card-text">
-            <h3>${staff[i].fullName}</h3>
-            <p>${staff[i].position}</p>
+            <h3>${ogg.fullName}</h3>
+            <p>${ogg.position}</p>
         </div>
     </div>
     `;
 
-    teamContainer.innerHTML += figure;
-    
+    where.innerHTML += figure;
+
 }
+
+for (let i = 0; i < staff.length; i++) {
+    addTeam(staff[i],teamContainer)  
+}
+
+addMember.addEventListener("click", function(){
+    
+    oggetto={
+        fullName: fullName.value,
+        position: position.value,
+        img: image.value,
+    };
+
+    addTeam(oggetto,teamContainer)
+})
+
+
 
 
 
